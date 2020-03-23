@@ -5,6 +5,6 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-	user = Users.objects.get(id=1)
-	print(user.email)
-	return HttpResponse("Hello, world. The User you were looking for is " + str(user.email) + " with password " + str(user.password) + " with access to " + str(user.device_owned))
+	user = request.GET.get('username')
+	print(user)
+	return HttpResponse("Hello, world. The user you requested is: " + str(user))
