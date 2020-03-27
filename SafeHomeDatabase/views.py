@@ -5,7 +5,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-	return HttpResponse("Hello, world! Nothing to see here!  You're at the SafeHomeDatabase index.")
+	return HttpResponse("Hello, world! Nothing to see here.  You're at the SafeHomeDatabase index.")
 
 def signin(request):
 	# Retrieve the GET request value for 'email'
