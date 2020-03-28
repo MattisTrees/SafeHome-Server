@@ -22,8 +22,11 @@ class Users(models.Model):
 		return self.email
 
 class Owns(models.Model):
-	user = models.ForeignKey(Users, null=True, on_delete=models.CASCADE)
+	user = models.ForeignKey(Users,related_name='OwningUser', null=True, on_delete=models.CASCADE)
 	device = models.ForeignKey(Devices, null=True, on_delete=models.CASCADE)
 
 	class Meta:
 		ordering = ['user']
+
+	def __str__(self):
+		return self.user.email + " : " + self.device.name

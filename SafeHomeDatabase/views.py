@@ -42,8 +42,11 @@ def signIn(request):
 # function to return a list of device names and their feed information
 def getDevices(request):
 	inputEmail = request.GET.get('email')
-	
-	return HttpResponse("This function will soon return a list of device names and their stream addresses")
+	devicesOwned = Owns.objects.filter(user__email=inputEmail).values('device__name', 'device__address')
+	returnValue = ""
+	for device in devicesOwned:
+		returnValue += device['device__name']  + ":" +  device['device__address'] + ", "
+	return HttpResponse(returnValue)
 
 def addDevice(request):
 	inputEmail = request.GET.get('email')
@@ -57,4 +60,21 @@ def addDevice(request):
 	except:
 		return HttpResponse("Email not in database!")
 	new_relationship = Owns(user=existingUser, device=existingDevice)
+	new_relationship.save()
 	return HttpResponse("Device " + deviceId + " Saved to your account!")
+
+def deleteDevice(request):
+	deviceId = request.GET.get('device')
+	inputEmail = request.GET.get('email')
+	try:
+		deviceOwned = Owns.objects.filter(user__email=inputEmail, device__name=deviceId)
+	except:
+		return HttpResponse("Device not found!")
+	try:
+		deviceOwned.delete()
+	except:
+		return HttpResponse("Could not delete device!")
+	return HttpResponse("Device successfully deleted")
+
+def changeDeviceName(request):
+	return HttpResponse("This method will be added in a later sprint")
