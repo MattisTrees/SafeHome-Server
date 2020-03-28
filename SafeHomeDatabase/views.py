@@ -45,7 +45,7 @@ def getDevices(request):
 	devicesOwned = Owns.objects.filter(user__email=inputEmail).values('device__name', 'device__address')
 	returnValue = ""
 	for device in devicesOwned:
-		returnValue += device['device__name']  + ":" +  device['device__address'] + ", "
+		returnValue += device['device__name']  + "-" +  device['device__address'] + ", "
 	return HttpResponse(returnValue)
 
 def addDevice(request):
@@ -63,6 +63,9 @@ def addDevice(request):
 	new_relationship.save()
 	return HttpResponse("Device " + deviceId + " Saved to your account!")
 
+# This function has a minor bug that doesn't check if the device requested to be deleted actually exists on the server.
+# It shouldn't matter much because the user doesn't manually enter the device name, it's taken from local variables
+# in the SafeHome App.
 def deleteDevice(request):
 	deviceId = request.GET.get('device')
 	inputEmail = request.GET.get('email')
