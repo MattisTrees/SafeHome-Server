@@ -17,7 +17,7 @@ def signUp(request):
 		# Email not found in database, make new Users object and add it to the Database
 		newUser = Users(email=inputEmail, password=inputPassword)
 		newUser.save()
-		return HttpResponse("Registration for  complete")
+		return HttpResponse("Registration for " + inputEmail + " complete")
 	return HttpResponse("Email already in use.")
 
 def signIn(request):
@@ -60,8 +60,14 @@ def addDevice(request):
 	except:
 		return HttpResponse("Email not in database!")
 	new_relationship = Owns(user=existingUser, device=existingDevice)
-	new_relationship.save()
-	return HttpResponse("Device " + deviceId + " Saved to your account!")
+	# Check to see if relationship already exists
+	try:
+		alreadyOwns = Owns.objects.get(user=existingUser, device=existingDevice)
+	except:
+		# Relattionship is not yet in the table
+		new_relationship.save()
+		return HttpResponse("Device " + deviceId + " Saved to your account!")
+	return HttpResponse("This device is already registered with your account!")
 
 # This function has a minor bug that doesn't check if the device requested to be deleted actually exists on the server.
 # It shouldn't matter much because the user doesn't manually enter the device name, it's taken from local variables
