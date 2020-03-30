@@ -8,11 +8,13 @@ the "Users" and "Devices" tables.
 
   To run the server, SSH in and navigate to SafeHome Directory from the root folder and run the following command:
   
-  >python manage.py runserver 0:[DESIRED PORT NUMBER]
+  >python manage.py runserver [::]:[DESIRED PORT NUMBER]
   
-  I've been using port 8001 because for some reason 8000 wont work. The 0 before the port number represents a 
-placeholder Ip address and is only used because it is easy and I don't have a technical reason yet not to use it, same
-with the port number.
+  Despite Django naturally running on port 8000 recently I've had to explicitly define port 8000 for Django to listen on. 
+The '[::]' which binds the socket to all of the network interfaces, this is a security risk and should be changed. 
 
   To make changes to the database cd into /SafeHome/SafeHomeDatabase/ and edit the models.py file. More information on
 creating and making changes to SQLite databases here: https://docs.djangoproject.com/en/3.0/intro/tutorial02/
+
+  To make changes to the function that modify the database cd into /SafeHome/SafeHomeDatabase/ and edit the functions in 
+the views.py file. If you add any functions in that file you need to edit the urls.py file in the same directory.
