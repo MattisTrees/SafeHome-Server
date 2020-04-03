@@ -86,4 +86,15 @@ def deleteDevice(request):
 	return HttpResponse("Device successfully deleted")
 
 def changeDeviceName(request):
-	return HttpResponse("This method will be added in a later sprint")
+	deviceId = request.GET.get('device_id')
+	newName = request.GET.get('device_name')
+	device = Devices.objects.get(id=deviceId)
+	oldName = device.name
+	device.name = newName
+	device.save()
+	return HttpResponse(oldName + " has been renamed to " + device.name)
+
+def createDevice(request):
+	newDevice = Devices(name=request.GET.get('name'), address=request.GET.get('address'))
+	newDevice.save()
+	return HttpResponse("Device created succesfully with name=" + newDevice.name + " address=" + newDevice.address)
