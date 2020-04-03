@@ -42,10 +42,10 @@ def signIn(request):
 # function to return a list of device names and their feed information
 def getDevices(request):
 	inputEmail = request.GET.get('email')
-	devicesOwned = Owns.objects.filter(user__email=inputEmail).values('device__name', 'device__address')
+	devicesOwned = Owns.objects.filter(user__email=inputEmail).values('device__name', 'device__address', 'device__id')
 	returnValue = ""
 	for device in devicesOwned:
-		returnValue += device['device__name']  + "-" +  device['device__address'] + ", "
+		returnValue += str(device['device__id']) + "-" + device['device__name']  + "-" +  device['device__address'] + ", "
 	return HttpResponse(returnValue)
 
 def addDevice(request):
