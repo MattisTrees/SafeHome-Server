@@ -1,7 +1,7 @@
 # SafeHome-Server
 Safe Home (Previously Secure Smart Home) Section 2
 
-# Basics
+## Basics
 
   This main directory represents the Django Apps set-up on top of a LAMP server (Linux, Apache, MySQL, Python).
 None of the Server code is hosted here. The SafeHome directory contains the main configuration files for the Django 
@@ -21,7 +21,7 @@ creating and making changes to SQLite databases here: https://docs.djangoproject
   To make changes to the function that modify the database cd into /SafeHome/SafeHomeDatabase/ and edit the functions in 
 the views.py file. If you add any functions in that file you need to edit the urls.py file in the same directory.
 
-# Functions
+## Functions
  
   The Django Server has several functions to interact with the Database:
   
