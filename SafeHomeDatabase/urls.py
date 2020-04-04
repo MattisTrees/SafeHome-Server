@@ -9,4 +9,6 @@ urlpatterns = [
 	path('signUp/', views.signUp, name='signUp'),
 	path('addDevice/', views.addDevice, name='addDevice'),
 	path('deleteDevice/', views.deleteDevice, name='deleteDevice'),
+	path('changeDeviceName/', views.changeDeviceName, name='changeDeviceName'),
+	path('createDevice/', views.createDevice, name='createDevice'),
 ]
