@@ -50,9 +50,9 @@ def getDevices(request):
 
 def addDevice(request):
 	inputEmail = request.GET.get('email')
-	deviceId = request.GET.get('device')
+	deviceId = request.GET.get('deviceId')
 	try:
-		existingDevice = Devices.objects.get(name=deviceId)
+		existingDevice = Devices.objects.get(id=deviceId)
 	except:
 		return HttpResponse("Device not found")
 	try:
