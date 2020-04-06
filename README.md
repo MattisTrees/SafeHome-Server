@@ -35,7 +35,7 @@ the views.py file. If you add any functions in that file you need to edit the ur
   * URL: http://[IP ADDRESS]:[PORT NUMBER]/SafeHomeDatabase/signIn?email=[USER EMAIL]&password=[PASSWORD]
 
 * <b>addDevice</b> - takes in the User's Email and the Device Name from the URL and adds a new entry into the 'Owns' table in the database, associating a device in the Devices table to a user in the Users table
-  * URL: http://[IP ADDRESS]:[PORT NUMBER]/SafeHomeDatabase/addDevice/?email=[USER EMAIL]&device=[DEVICE NAME]
+  * URL: http://[IP ADDRESS]:[PORT NUMBER]/SafeHomeDatabase/addDevice/?email=[USER EMAIL]&deviceId=[DEVICE ID]
 
 * <b>getDevices</b> - takes in the User's Email from the URL and returns a list of the Device Id's, Device Names, and Ip Addresses for the stream in a list seperated by commas.
   * URL: http://[IP ADDRESS]:[PORT NUMBER]/SafeHomeDatabase/getDevices/?email=[USER EMAIL]
