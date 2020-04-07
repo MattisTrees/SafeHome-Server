@@ -90,8 +90,8 @@ def deleteDevice(request):
 		return HttpResponse("There is some mistake")
 
 def changeDeviceName(request):
-	deviceId = request.GET.get('device_id')
-	newName = request.GET.get('device_name')
+	deviceId = request.GET.get('deviceId')
+	newName = request.GET.get('deviceName')
 	device = Devices.objects.get(id=deviceId)
 	oldName = device.name
 	device.name = newName

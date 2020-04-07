@@ -41,7 +41,7 @@ the views.py file. If you add any functions in that file you need to edit the ur
   * URL: http://[IP ADDRESS]:[PORT NUMBER]/SafeHomeDatabase/getDevices/?email=[USER EMAIL]
 
 * <b>deleteDevice</b> - takes in the User's Email and the Device Name from the URL and returns a confirmation if the entry in the Owns table was successfully deleted.
-  * URL: http://[IP ADDRESS]:[PORT NUMBER]/SafeHomeDatabase/deleteDevice/?email=[USER EMAIL]&device=[DEVICE NAME]
+  * URL: http://[IP ADDRESS]:[PORT NUMBER]/SafeHomeDatabase/deleteDevice/?email=[USER EMAIL]&deviceId=[DEVICE NAME]
 
 * <b>changeDeviceName</b> - takes in the Device's Unique Id and a New Name for the device from the URL and returns a confirmation if the entry in the Device table was successfully modified.
-  * URL: http://[IP ADDRESS]:[PORT NUMBER]/SafeHomeDatabase/changeDeviceName?device_id=[DEVICE ID]&device_name=[NEW DEVICE NAME]
+  * URL: http://[IP ADDRESS]:[PORT NUMBER]/SafeHomeDatabase/changeDeviceName?deviceId=[DEVICE ID]&deviceName=[NEW DEVICE NAME]
