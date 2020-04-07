@@ -73,17 +73,21 @@ def addDevice(request):
 # It shouldn't matter much because the user doesn't manually enter the device name, it's taken from local variables
 # in the SafeHome App.
 def deleteDevice(request):
-	deviceId = request.GET.get('device')
+	deviceId = request.GET.get('deviceId')
 	inputEmail = request.GET.get('email')
-	try:
-		deviceOwned = Owns.objects.filter(user__email=inputEmail, device__name=deviceId)
-	except:
-		return HttpResponse("Device not found!")
-	try:
-		deviceOwned.delete()
-	except:
-		return HttpResponse("Could not delete device!")
-	return HttpResponse("Device successfully deleted")
+	deviceOwned = Owns.objects.filter(user__email=inputEmail, device__id=deviceId)
+	if deviceOwned.count() == 1:
+		try:
+			deviceOwned.delete()
+		except:
+			return HttpResponse("Could not delete device!")
+		return HttpResponse("Device successfully deleted!")
+	else:
+		if deviceOwned.count() >= 1:
+			return HttpResponse ("There might be more than one entry in the table for this relationship!!!")
+		else:
+			return HttpResponse("Device not associated with this account!")
+		return HttpResponse("There is some mistake")
 
 def changeDeviceName(request):
 	deviceId = request.GET.get('device_id')
