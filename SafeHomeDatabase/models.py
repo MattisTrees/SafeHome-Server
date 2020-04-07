@@ -9,7 +9,7 @@ class Devices(models.Model):
 		ordering = ['name']
 
 	def __str__(self):
-		return self.name
+		return str(self.id) + " : " + self.name
 
 class Users(models.Model):
 	email = models.EmailField('Email', max_length=60)
@@ -29,4 +29,4 @@ class Owns(models.Model):
 		ordering = ['user']
 
 	def __str__(self):
-		return self.user.email + " : " + self.device.name
+		return self.user.email + " - " + str(self.device.id) + " : " + self.device.name

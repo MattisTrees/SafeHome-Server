@@ -50,9 +50,9 @@ def getDevices(request):
 
 def addDevice(request):
 	inputEmail = request.GET.get('email')
-	deviceId = request.GET.get('device')
+	deviceId = request.GET.get('deviceId')
 	try:
-		existingDevice = Devices.objects.get(name=deviceId)
+		existingDevice = Devices.objects.get(id=deviceId)
 	except:
 		return HttpResponse("Device not found")
 	try:
@@ -73,21 +73,25 @@ def addDevice(request):
 # It shouldn't matter much because the user doesn't manually enter the device name, it's taken from local variables
 # in the SafeHome App.
 def deleteDevice(request):
-	deviceId = request.GET.get('device')
+	deviceId = request.GET.get('deviceId')
 	inputEmail = request.GET.get('email')
-	try:
-		deviceOwned = Owns.objects.filter(user__email=inputEmail, device__name=deviceId)
-	except:
-		return HttpResponse("Device not found!")
-	try:
-		deviceOwned.delete()
-	except:
-		return HttpResponse("Could not delete device!")
-	return HttpResponse("Device successfully deleted")
+	deviceOwned = Owns.objects.filter(user__email=inputEmail, device__id=deviceId)
+	if deviceOwned.count() == 1:
+		try:
+			deviceOwned.delete()
+		except:
+			return HttpResponse("Could not delete device!")
+		return HttpResponse("Device successfully deleted!")
+	else:
+		if deviceOwned.count() >= 1:
+			return HttpResponse ("There might be more than one entry in the table for this relationship!!!")
+		else:
+			return HttpResponse("Device not associated with this account!")
+		return HttpResponse("There is some mistake")
 
 def changeDeviceName(request):
-	deviceId = request.GET.get('device_id')
-	newName = request.GET.get('device_name')
+	deviceId = request.GET.get('deviceId')
+	newName = request.GET.get('deviceName')
 	device = Devices.objects.get(id=deviceId)
 	oldName = device.name
 	device.name = newName
