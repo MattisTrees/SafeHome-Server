@@ -5,6 +5,7 @@ from django.db import models
 class Devices(models.Model):
 	address = models.CharField('Stream Location', max_length=60)
 	name = models.CharField('Device Name', max_length=60)
+	temp = models.CharField('Temperature',default = "NONE", max_length=60)
 	class Meta:
 		ordering = ['name']
 
