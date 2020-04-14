@@ -46,8 +46,8 @@ the views.py file. If you add any functions in that file you need to edit the ur
 * <b>changeDeviceName</b> - takes in the Device's Unique Id and a New Name for the device from the URL and returns a confirmation if the entry in the Device table was successfully modified.
   * URL: http://[IP ADDRESS]:[PORT NUMBER]/SafeHomeDatabase/changeDeviceName?deviceId=[DEVICE ID]&deviceName=[NEW DEVICE NAME]
 
-*<b>setTemp</b> - takes in the Device's Unique Id and a new maximum temperature recorded by the device to be used in the Alert's system, returns a string confirming that it worked
+* <b>setTemp</b> - takes in the Device's Unique Id and a new maximum temperature recorded by the device to be used in the Alert's system, returns a string confirming that it worked
   * URL: http://[IP ADDRESS]:[PORT]/SafeHomeDatabase/setTemp/?id=[DEVICE_ID]&temp=[TEMP]
 
-*<b>getTemp</b> - takes in the Device's Unique Id and returns the max temperature value set by the associated device
+* <b>getTemp</b> - takes in the Device's Unique Id and returns the max temperature value set by the associated device
   * URL: http://[IP ADDRESS]:[PORT]/SafeHomeDatabase/getTemp/?id=[DEVICE_ID]
