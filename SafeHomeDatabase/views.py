@@ -102,3 +102,18 @@ def createDevice(request):
 	newDevice = Devices(name=request.GET.get('name'), address=request.GET.get('address'))
 	newDevice.save()
 	return HttpResponse("Device created succesfully with name=" + newDevice.name + " address=" + newDevice.address)
+def setTemp(request):
+	try:
+		device = Devices.objects.get(id=request.GET.get('id'))
+		device.temp = request.GET.get('temp')
+		device.save()
+		return HttpResponse("Successfully set device temp")
+	except:
+		return HttpResponse("Could not change value, contact Matt")
+def getTemp(request):
+	try:
+		deviceId = request.GET.get('id')
+		device = Devices.objects.get(id=deviceId)
+		return  HttpResponse(device.temp)
+	except:
+		return HttpResponse("Could not return device temp, contact Matt")

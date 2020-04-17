@@ -11,4 +11,6 @@ urlpatterns = [
 	path('deleteDevice/', views.deleteDevice, name='deleteDevice'),
 	path('changeDeviceName/', views.changeDeviceName, name='changeDeviceName'),
 	path('createDevice/', views.createDevice, name='createDevice'),
+	path('setTemp/', views.setTemp, name='setTemp'),
+	path('getTemp/', views.getTemp, name='getTemp'),
 ]
